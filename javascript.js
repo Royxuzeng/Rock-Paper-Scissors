@@ -15,10 +15,12 @@ function playRound(playerSelection, computerSelection) {
                 (playerSelection === 'scissors' && computerSelection === 'paper') ||
                 (playerSelection === 'paper' && computerSelection === 'rock')) {
         roundWinner = "player";
+        playerScore += 1;
     } else {
         roundWinner = "computer";
+        computerScore += 1;
     }
-    return getScoreMessage(roundWinner, playerSelection, computerSelection);
+    console.log(getScoreMessage(roundWinner, playerSelection, computerSelection));
 }
 
 function getScoreMessage(roundWinner, playerSelection, computerSelection) {
@@ -32,7 +34,27 @@ function getScoreMessage(roundWinner, playerSelection, computerSelection) {
     }
     return message;
 }
+
+let playerScore = 0;
+let computerScore = 0;
+
+function game() {
+    for (let i = 0; i < 5; i++) {
+        let playerSelection = prompt("please input your choice");
+        let computerSelection = getComputerChoice();
+        playRound(playerSelection, computerSelection);
+    }
+
+    if (playerScore > computerScore) {
+        console.log("You win.");
+    } else if (playerScore < computerScore) {
+        console.log("Computer wins");
+    } else {
+        console.log("Tie.");
+    }
+}
    
 const playerSelection = "rock";
 const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+game();
+
