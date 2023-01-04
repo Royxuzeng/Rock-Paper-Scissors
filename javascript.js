@@ -38,24 +38,11 @@ function getScoreMessage(roundWinner, playerSelection, computerSelection) {
 let playerScore = 0;
 let computerScore = 0;
 
-// function game() {
-//     for (let i = 0; i < 5; i++) {
-//         let computerSelection = getComputerChoice();
-//         playRound(playerSelection, computerSelection);
-//     }
-
-//     if (playerScore > computerScore) {
-//         console.log("You win.");
-//     } else if (playerScore < computerScore) {
-//         console.log("Computer wins");
-//     } else {
-//         console.log("Tie.");
-//     }
-// }
-
 const rock = document.getElementById('rock');
 const paper = document.getElementById('paper');
 const scissors = document.getElementById('scissors');
+const player = document.getElementById('player');
+const computer = document.getElementById('computer');
 
 rock.addEventListener('click', () => handleClick('rock'));
 paper.addEventListener('click', () => handleClick('paper'));
@@ -67,7 +54,10 @@ function handleClick(playerSelection) {
     }
     const computerSelection = getComputerChoice();
     playRound(playerSelection, computerSelection);
-  
+
+    player.textContent = `Player: ${playerScore}`;
+    computer.textContent = `Computer: ${computerScore}`;
+
     if (playerScore == 5 || computerScore == 5) {
       endGame();
       gameEnd = true;
